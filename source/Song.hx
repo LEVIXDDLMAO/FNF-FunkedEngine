@@ -19,7 +19,7 @@ typedef SwagSong =
 	var bpm:Float;
 	var needsVoices:Bool;
 	var speed:Float;
-	var mania:Int;
+	var mania:Null<Int>;
 	var player1:String;
 	var player2:String;
 	var player3:String;
@@ -40,7 +40,7 @@ class Song
 	public var splashSkin:String;
 	public var speed:Float = 1;
 	public var stage:String;
-	public var mania:Int = 3;
+	public var mania:Null<Int> = 3;
 	public var player1:String = 'bf';
 	public var player2:String = 'dad';
 	public var player3:String = 'gf';
@@ -96,6 +96,11 @@ class Song
 				daBpm = songData.bpm; */
 
 		var songJson:SwagSong = parseJSONshit(rawJson);
+		if (songJson.mania < 0 || songJson.mania == null)
+			{
+				songJson.mania = 3;
+				trace('New Mania: '+songJson.mania);
+			}
 		if(jsonInput != 'events') StageData.loadDirectory(songJson);
 		return songJson;
 	}
