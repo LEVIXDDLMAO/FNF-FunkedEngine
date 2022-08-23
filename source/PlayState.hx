@@ -956,9 +956,7 @@ class PlayState extends MusicBeatState
 		if(ClientPrefs.downScroll) strumLine.y = FlxG.height - 150;
 		strumLine.scrollFactor.set();
 
-		
-		
-	table = new FlxText(4, FlxG.height / 2, 0,
+		scoretable = new FlxText(4, FlxG.height / 2, 0,
 			'Song Score: '+ songScore +
 			'\nCurrent Combo: '+ combo +
 			'\nHighest combo: '+ highestcombo +
@@ -992,15 +990,6 @@ class PlayState extends MusicBeatState
 		timeBarBG.xAdd = -4;
 		timeBarBG.yAdd = -4;
 		add(timeBarBG);
-		
-		// add near Score Text
-var comboCounter:FlxSprite = new FlxSprite(0, 0);
-comboCounter.frames = Paths.getSparrowAtlas('UI_assets/Rating/sick-normal',  'shared');
-comboCounter.animation.addByPrefix('comboNote',  "YOUR ANIMATION HERE", 24);
-comboCounter.animation.play('comboNote');
-add(comboCounter);
-		
-comboCounter.cameras = [camHUD]; 
 
 		timeBar = new FlxBar(timeBarBG.x + 4, timeBarBG.y + 4, LEFT_TO_RIGHT, Std.int(timeBarBG.width - 8), Std.int(timeBarBG.height - 8), this,
 			'songPercent', 0, 1);
@@ -1050,8 +1039,7 @@ comboCounter.cameras = [camHUD];
 		// After all characters being loaded, it makes then invisible 0.01s later so that the player won't freeze when you change characters
 		// add(strumLine);
 
-		
-		Follow = new FlxPoint();
+		camFollow = new FlxPoint();
 		camFollowPos = new FlxObject(0, 0, 1, 1);
 
 		snapCamFollowToPos(camPos.x, camPos.y);
@@ -1136,7 +1124,6 @@ comboCounter.cameras = [camHUD];
 		timeBarBG.cameras = [camHUD];
 		timeTxt.cameras = [camHUD];
 		doof.cameras = [camHUD];
-		comboCounter.cameras = [camHUD];
 
 		// if (SONG.song == 'South')
 		// FlxG.camera.alpha = 0.7;
